@@ -22,7 +22,24 @@ const addTaskModel = async (task, status) => {
   };
 }
 
+const getTaskByIdModel = async (id) => {
+  const [task] = await connection.execute(
+    'SELECT * FROM ToDoList.tasks WHERE id = ?', [id],
+  );
+
+  return task;
+};
+
+const deleteTaskModel = async (id) => {
+  await connection.execute(
+    `DELETE FROM ToDoList.tasks
+    WHERE id = ?`, [id],
+  );
+}
+
 module.exports = {
   getAllTasksModel,
   addTaskModel,
+  getTaskByIdModel,
+  deleteTaskModel,
 };

@@ -1,6 +1,6 @@
 const express = require('express');
-const { getAllTasksController, addTaskController } = require('./controllers/tasksControllers');
-const { validateTaskData } = require('./middlewares/tasksMiddleware');
+const { getAllTasksController, addTaskController, deleteTaskController } = require('./controllers/tasksControllers');
+const { validateTaskData, validateTaskId } = require('./middlewares/tasksMiddleware');
 
 const app = express();
 
@@ -11,6 +11,8 @@ app.use(express.json());
 app.get('/', getAllTasksController);
 
 app.post('/', validateTaskData, addTaskController);
+
+app.delete('/', validateTaskId, deleteTaskController);
 
 app.listen(PORT, () => {
   console.log(`Aplicação ouvindo na porta ${PORT}`);
