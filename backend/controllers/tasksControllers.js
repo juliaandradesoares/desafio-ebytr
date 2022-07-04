@@ -6,6 +6,15 @@ const getAllTasksController = async (req, res) => {
   return res.status(200).json(tasks);
 };
 
+const addTaskController = async (req, res) => {
+  const { task, status } = req.body;
+
+  const newTask = await tasksService.addTaskService(task, status);
+
+  res.status(201).json(newTask);
+}
+
 module.exports = {
   getAllTasksController,
+  addTaskController,
 };

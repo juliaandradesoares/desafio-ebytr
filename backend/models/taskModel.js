@@ -8,6 +8,21 @@ const getAllTasksModel = async () => {
   return tasks;
 };
 
+const addTaskModel = async (task, status) => {
+  const [newTask] = await connection.execute(
+    `INSERT INTO ToDoList.tasks (task, status)
+    VALUES (?, ?)`, [task, status],
+  );
+
+  return {
+    id: newTask.insertId, 
+    task,
+    status,
+    creation_date: newTask.creation_date,
+  };
+}
+
 module.exports = {
   getAllTasksModel,
+  addTaskModel,
 };
