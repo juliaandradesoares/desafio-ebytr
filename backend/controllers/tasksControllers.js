@@ -22,8 +22,17 @@ const deleteTaskController = async (req, res) => {
   return res.status(204).end();
 }
 
+const updateTaskController = async (req, res) => {
+  const { id, task, status } = req.body;
+
+  const updatedTask = await tasksService.updateTaskService(id, task, status);
+
+  res.status(200).json(updatedTask);
+}
+
 module.exports = {
   getAllTasksController,
   addTaskController,
   deleteTaskController,
+  updateTaskController,
 };

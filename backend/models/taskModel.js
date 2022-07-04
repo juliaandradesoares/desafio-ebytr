@@ -37,9 +37,24 @@ const deleteTaskModel = async (id) => {
   );
 }
 
+const updateTaskModel = async (id, task, status) => {
+  const [updatedTask] = await connection.execute(
+    `UPDATE ToDoList.tasks
+    SET task = ?, status = ?
+    WHERE id = ?`, [task, status, id],
+  );
+
+  return {
+    id, 
+    task,
+    status,
+  };
+};
+
 module.exports = {
   getAllTasksModel,
   addTaskModel,
   getTaskByIdModel,
   deleteTaskModel,
+  updateTaskModel,
 };
