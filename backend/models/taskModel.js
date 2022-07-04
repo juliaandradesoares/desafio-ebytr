@@ -38,10 +38,10 @@ const deleteTaskModel = async (id) => {
 }
 
 const updateTaskModel = async (id, task, status) => {
-  const [updatedTask] = await connection.execute(
+  await connection.execute(
     `UPDATE ToDoList.tasks
-    SET task = ?, status = ?
-    WHERE id = ?`, [task, status, id],
+    SET status = ?
+    WHERE id = ?`, [status, id],
   );
 
   return {

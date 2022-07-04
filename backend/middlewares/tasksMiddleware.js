@@ -23,7 +23,7 @@ const validateTaskId = async (req, res, next) => {
 
   const task = await tasksService.getTaskByIdService(id);
 
-  if (!task) {
+  if (task.length === 0) {
     return res.status(404).json({ message: 'id not found'});
   }
 
