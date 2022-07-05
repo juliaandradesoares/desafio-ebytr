@@ -1,4 +1,5 @@
 import React from 'react';
+import urlFetch from '../helpers/urlFetch';
 
 class ToDoList extends React.Component {
   constructor() {
@@ -18,7 +19,7 @@ class ToDoList extends React.Component {
 
     const fetchTasks = async () => {
       try {
-        const response = await fetch('http://127.0.0.1:3000/');
+        const response = await fetch(urlFetch);
         const data = await response.json();
         return data;
       } catch (erro) {
