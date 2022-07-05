@@ -1,5 +1,19 @@
 # desafio-ebytr
 
+Esta é a resolução de um desafio proposto pela Trybe. O desafio consistia em desenvolver um sistema para acompanhamento de tarefas, capaz de auxiliar pessoas a se organizarem e terem mais produtividade. As funcionalidades criadas para essa aplicação foram:
+
+- Visualizar a lista de tarefas
+- Inserir uma nova tarefa na lista
+- Remover uma tarefa da lista
+- Atualizar uma tarefa da lista
+- A tarefa deve possuir um status editável: pendente, em andamento ou pronto
+
+Os requisitos técnicos seguidos:
+
+- Front-End em React;
+- Back-End em NodeJS, com MySQL;
+- Arquitetura em camadas;
+
 Para rodar o projeto, siga os seguintes passos:
 
 1-Clone o repositório</br>
