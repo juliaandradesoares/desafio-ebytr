@@ -12,7 +12,7 @@ class ToDoList extends React.Component {
 
     this.onChangeNewTask = this.onChangeNewTask.bind(this);
     this.onClickNewTask = this.onClickNewTask.bind(this);
-    // this.onClickDeleteTask = this.onClickDeleteTask.bind(this);
+    this.onClickDeleteTask = this.onClickDeleteTask.bind(this);
   }
 
   async componentDidMount() {
@@ -62,8 +62,6 @@ class ToDoList extends React.Component {
   onClickNewTask() {
     const { newTask } = this.state;
 
-    // CHAMAR POST PASSANDO NEWTASK
-
     let task = {
       task: newTask,
     }
@@ -76,9 +74,14 @@ class ToDoList extends React.Component {
     .then(response => response.json());
   }
 
-  /* onClickDeleteTask(id) {
-    // CHAMAR DELETE PASSANDO ID
-  } */
+  onClickDeleteTask(id) {   
+    fetch(`${urlFetch}${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-type': 'application/json',
+      },
+    })
+  }
 
   render() {
     const { newTask, tasks } = this.state;
@@ -113,7 +116,7 @@ class ToDoList extends React.Component {
                       <select
                         data-testid='status-input'
                         id='statusInput'
-                        // value={item.status}
+                        value={ item.status }
                         // onChange={ this.onChangeTaskStatus }
                       >
                         <option value='PENDENTE'>PENDENTE</option>
@@ -124,7 +127,7 @@ class ToDoList extends React.Component {
                     <td>
                       <button
                         type='button'
-                        // onClick={ () => this.onClickDeleteTask(item.id) }
+                        onClick={ () => this.onClickDeleteTask(item.id) }
                       >
                         Excluir tarefa
                       </button>
