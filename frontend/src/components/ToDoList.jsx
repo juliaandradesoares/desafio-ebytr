@@ -73,6 +73,10 @@ class ToDoList extends React.Component {
       headers: {"Content-type": "application/json; charset=UTF-8"}
     })
     .then(response => response.json());
+
+    this.setState({
+      newTask: '',
+    })
   }
 
   onClickDeleteTask(id) {   
@@ -101,12 +105,14 @@ class ToDoList extends React.Component {
     const { newTask, tasks } = this.state;
     return (
       <>
-        <div>
+        <h1>Minha lista de tarefas</h1>
+        <div id='addTask'>
           <label htmlFor='task'>
             <input
               id='task'
               data-testid='email-input'
               type='task'
+              placeholder='Digite uma nova tarefa'
               value={ newTask }
               onChange={this.onChangeNewTask}
             />
@@ -115,11 +121,19 @@ class ToDoList extends React.Component {
             type='button'
             onClick={ this.onClickNewTask }
           >
-            Adicionar tarefa
+            Adicionar
           </button>
         </div>
         <div>
-          <table>
+          <table id='table'>
+            <thead>
+              <tr>
+                <td>Data de criação</td>
+                <td>Tarefa</td>
+                <td>Status</td>
+                <td>Excluir</td>
+              </tr>
+            </thead>
             <tbody>
               {tasks.map((item) => {
                 return (
@@ -142,8 +156,9 @@ class ToDoList extends React.Component {
                       <button
                         type='button'
                         onClick={ () => this.onClickDeleteTask(item.id) }
+                        id='deleteButton'
                       >
-                        Excluir tarefa
+                        X
                       </button>
                     </td>
                   </tr>
