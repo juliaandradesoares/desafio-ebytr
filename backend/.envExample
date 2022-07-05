@@ -1,0 +1,5 @@
+MYSQL_HOST=localhost
+MYSQL_USER=usuario
+MYSQL_PASSWORD=SenhaDoBancoDeDados
+MYSQL_DATABASE=NomeDoBancoDeDadosCriado
+PORT=3000
