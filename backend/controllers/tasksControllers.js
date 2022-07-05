@@ -15,7 +15,7 @@ const addTaskController = async (req, res) => {
 }
 
 const deleteTaskController = async (req, res) => {
-  const { id } = req.body;
+  const { id } = req.params;
 
   await tasksService.deleteTaskService(id);
 
@@ -23,7 +23,8 @@ const deleteTaskController = async (req, res) => {
 }
 
 const updateTaskController = async (req, res) => {
-  const { id, status } = req.body;
+  const { status } = req.body;
+  const { id } = req.params;
 
   const updatedTask = await tasksService.updateTaskService(id, status);
 

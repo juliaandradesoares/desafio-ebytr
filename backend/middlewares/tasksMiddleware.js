@@ -21,7 +21,7 @@ const validateStatus = (req, res, next) => {
 }
 
 const validateTaskId = async (req, res, next) => {
-  const { id } = req.body;
+  const { id } = req.params;
 
   if (!id) {
     return res.status(400).json({ message: '"id" is required' });

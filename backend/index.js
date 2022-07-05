@@ -14,9 +14,9 @@ app.get('/', getAllTasksController);
 
 app.post('/', validateTask, addTaskController);
 
-app.delete('/', validateTaskId, deleteTaskController);
+app.delete('/:id', validateTaskId, deleteTaskController);
 
-app.put('/', validateStatus, validateTaskId, updateTaskController);
+app.put('/:id', validateStatus, validateTaskId, updateTaskController);
 
 app.listen(PORT, () => {
   console.log(`Aplicação ouvindo na porta ${PORT}`);
