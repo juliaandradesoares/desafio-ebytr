@@ -13,6 +13,7 @@ class ToDoList extends React.Component {
     this.onChangeNewTask = this.onChangeNewTask.bind(this);
     this.onClickNewTask = this.onClickNewTask.bind(this);
     this.onClickDeleteTask = this.onClickDeleteTask.bind(this);
+    this.onChangeTaskStatus = this.onChangeTaskStatus.bind(this);
   }
 
   async componentDidMount() {
@@ -83,6 +84,19 @@ class ToDoList extends React.Component {
     })
   }
 
+  onChangeTaskStatus(event) {
+    let status = {
+      status: event.target.value,
+    }
+
+    fetch(`${urlFetch}${event.target.id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(status),
+    })
+      .then(response => response.json())
+  } 
+
   render() {
     const { newTask, tasks } = this.state;
     return (
@@ -115,9 +129,9 @@ class ToDoList extends React.Component {
                     <td>
                       <select
                         data-testid='status-input'
-                        id='statusInput'
+                        id={ item.id }
                         value={ item.status }
-                        // onChange={ this.onChangeTaskStatus }
+                        onChange={ this.onChangeTaskStatus }
                       >
                         <option value='PENDENTE'>PENDENTE</option>
                         <option value='EM ANDAMENTO'>EM ANDAMENTO</option>
