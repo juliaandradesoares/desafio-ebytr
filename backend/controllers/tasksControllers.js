@@ -7,9 +7,9 @@ const getAllTasksController = async (req, res) => {
 };
 
 const addTaskController = async (req, res) => {
-  const { task, status } = req.body;
+  const { task } = req.body;
 
-  const newTask = await tasksService.addTaskService(task, status);
+  const newTask = await tasksService.addTaskService(task);
 
   res.status(201).json(newTask);
 }
@@ -23,9 +23,9 @@ const deleteTaskController = async (req, res) => {
 }
 
 const updateTaskController = async (req, res) => {
-  const { id, task, status } = req.body;
+  const { id, status } = req.body;
 
-  const updatedTask = await tasksService.updateTaskService(id, task, status);
+  const updatedTask = await tasksService.updateTaskService(id, status);
 
   res.status(200).json(updatedTask);
 }

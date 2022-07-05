@@ -1,11 +1,17 @@
 const tasksService = require('../services/tasksService');
 
-const validateTaskData = (req, res, next) => {
-  const { task, status } = req.body;
+const validateTask = (req, res, next) => {
+  const { task } = req.body;
 
   if (!task) {
     return res.status(400).json({ message: '"task" is required' });
   }
+
+  next();
+}
+
+const validateStatus = (req, res, next) => {
+  const { status } = req.body;
 
   if (!status) {
     return res.status(400).json({ message: '"status" is required' });
@@ -31,6 +37,7 @@ const validateTaskId = async (req, res, next) => {
 }
 
 module.exports = {
-  validateTaskData,
+  validateTask,
+  validateStatus,
   validateTaskId,
 };

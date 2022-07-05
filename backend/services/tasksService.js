@@ -6,8 +6,8 @@ const getAllTasksService = async () => {
   return tasks;
 };
 
-const addTaskService = async (task, status) => {
-  const newTask = await addTaskModel(task, status);
+const addTaskService = async (task) => {
+  const newTask = await addTaskModel(task);
 
   return newTask;
 };
@@ -22,8 +22,8 @@ const deleteTaskService = async (id) => {
   await deleteTaskModel(id);
 }
 
-const updateTaskService = async (id, task, status) => {
-  const updatedTask = await updateTaskModel(id, task, status);
+const updateTaskService = async (id, status) => {
+  const updatedTask = await updateTaskModel(id, status);
 
   return updatedTask;
 };

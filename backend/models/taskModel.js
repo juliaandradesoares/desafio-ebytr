@@ -8,7 +8,9 @@ const getAllTasksModel = async () => {
   return tasks;
 };
 
-const addTaskModel = async (task, status) => {
+const addTaskModel = async (task) => {
+  const status = "PENDENTE";
+  
   const [newTask] = await connection.execute(
     `INSERT INTO ToDoList.tasks (task, status)
     VALUES (?, ?)`, [task, status],
@@ -37,7 +39,7 @@ const deleteTaskModel = async (id) => {
   );
 }
 
-const updateTaskModel = async (id, task, status) => {
+const updateTaskModel = async (id, status) => {
   await connection.execute(
     `UPDATE ToDoList.tasks
     SET status = ?
@@ -46,7 +48,6 @@ const updateTaskModel = async (id, task, status) => {
 
   return {
     id, 
-    task,
     status,
   };
 };

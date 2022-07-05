@@ -1,20 +1,22 @@
 const express = require('express');
+const cors = require('cors');
 const { getAllTasksController, addTaskController, deleteTaskController, updateTaskController, getById } = require('./controllers/tasksControllers');
-const { validateTaskData, validateTaskId } = require('./middlewares/tasksMiddleware');
+const { validateTask, validateTaskId, validateStatus } = require('./middlewares/tasksMiddleware');
 
 const app = express();
 
 const PORT = process.env.PORT || 3000;
 
+app.use(cors());
 app.use(express.json());
 
 app.get('/', getAllTasksController);
 
-app.post('/', validateTaskData, addTaskController);
+app.post('/', validateTask, addTaskController);
 
 app.delete('/', validateTaskId, deleteTaskController);
 
-app.put('/', validateTaskData, validateTaskId, updateTaskController);
+app.put('/', validateStatus, validateTaskId, updateTaskController);
 
 app.listen(PORT, () => {
   console.log(`Aplicação ouvindo na porta ${PORT}`);
